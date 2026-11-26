@@ -17,6 +17,10 @@ The custom vga_conveyor module is adapted from example code; existing comments
 and attribution have been preserved. Inclusion is based on project-specific
 content, not a verified authorship history.
 
+CREDITS
+Project partner Rhett Zhang contributed the package generator, second counter
+(sec_counter), and part of the VGA implementation.
+
 DEPENDENCIES
 This is a source-only archive, not a complete standalone FPGA build. VGA designs
 still require the matching course VGA adapter, controller, address translator,
@@ -32,3 +36,4 @@ The VGA testbench is too short to show a full screen draw.
 
 This guide and export manifest were prepared with Codex. No simulation or FPGA
 validation was performed for this export.
+

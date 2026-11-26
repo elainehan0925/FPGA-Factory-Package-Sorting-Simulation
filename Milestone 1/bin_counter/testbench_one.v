@@ -1,0 +1,74 @@
+`timescale 1ns / 1ps
+
+module testbench_one ( );
+
+	parameter CLOCK_PERIOD = 10;
+	reg CLOCK_50;
+	reg [0:0] KEY;
+	reg increment, decrement;
+	wire [1:0] count;
+	wire full, empty;
+
+	initial begin
+		KEY[0] <= 1'b0;
+		#10 KEY[0] <=1'b1;
+	end
+	initial begin
+		CLOCK_50 <= 1'b0;
+	end 
+	always begin
+		#(CLOCK_PERIOD / 2);
+		CLOCK_50 = ~CLOCK_50;
+end
+	
+	initial begin
+		increment = 1'b0;
+		decrement = 1'b0;
+	
+		#20;
+
+		increment = 1'b1;
+		#10 increment = 1'b0;
+
+		#10;
+		
+		increment = 1'b1;
+		#10 increment = 1'b0;
+
+		#10;
+		
+		increment = 1'b1;
+		#10 increment = 1'b0;
+
+		#10;
+		
+		increment = 1'b1;
+		#10 increment = 1'b0;
+
+		#10;
+		
+		decrement = 1'b1;
+		#10 decrement = 1'b0;
+		
+		#10;
+		
+		decrement = 1'b1;
+		#10 decrement = 1'b0;
+	
+		#10;
+		
+		decrement = 1'b1;
+		#10 decrement = 1'b0;
+	
+		#10;
+		
+		decrement = 1'b1;
+		#10 decrement = 1'b0;
+		
+		#10 $stop;
+
+	end
+
+	bin_counter B1(KEY, CLOCK_50, increment, decrement, count, full, empty);
+
+endmodule

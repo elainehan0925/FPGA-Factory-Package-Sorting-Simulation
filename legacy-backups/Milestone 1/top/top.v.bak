@@ -1,0 +1,41 @@
+module top (CLOCK_50, SW, KEY, LEDR, VGA_R, VGA_G, VGA_B, VGA_HS, VGA_VS, VGA_BLANK_N, VGA_CLK);
+
+    input CLOCK_50;             // DE-series 50 MHz clock signal
+    input wire [9:0] SW;        // DE-series switches
+    input wire [3:0] KEY;       // DE-series pushbuttons
+
+    output wire [9:0] LEDR;     // DE-series LEDs 
+	 
+    output wire [7:0] VGA_R, VGA_G, VGA_B;
+	 output wire VGA_HS, VGA_VS;
+	 output wire VGA_BLANK_N, VGA_SYNC_N, VGA_CLK;
+	 
+	 wire reset, run_enable;
+	 wire pulse;
+	 wire package_type, package_status;
+	 wire input_status, output_status;
+	 
+	 wire [7:0] slot_status, slot_type;
+	 
+	 wire increment_A, decrement_A;
+	 wire increment_B, decrement_B;
+	 
+	 wire [1:0] count_A, count_B;
+	 wire full_A, full_B;
+	 wire empty_A, empty_B;
+	 
+	 assign reset = ~KEY[0];
+	 assign run_enable = SW[0];
+
+    // The VGA resolution, which can be set to "640x480", "320x240", or "160x120"
+    parameter RESOLUTION = "640x480";
+    parameter COLOR_DEPTH = 9; // Can be set to 9, 6, or 3
+    // VGA x bitwidth
+    parameter n = (RESOLUTION == "640x480") ? 10 : ((RESOLUTION == "320x240") ? 9 : 8);
+
+	 VGA (CLOCK_50, KEY, LEDR, VGA_X[n-1:0], VGA_Y[n-2:0], VGA_COLOR, plot);
+        defparam U1.RESOLUTION = RESOLUTION;
+        defparam U1.COLOR_DEPTH = COLOR_DEPTH;
+
+endmodule
+

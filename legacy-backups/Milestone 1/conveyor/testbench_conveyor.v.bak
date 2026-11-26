@@ -1,0 +1,82 @@
+`timescale 1ns / 1ps
+
+module testbench_conveyor ( );
+conveyor(KEY, CLOCK_50, pulse, package_type, package_status, output_status, slot_type, slot_status, input_status);
+	parameter CLOCK_PERIOD = 10;
+	reg CLOCK_50;
+	reg [0:0] KEY;
+	reg pulse, package_type, package_status, output_status;
+	wire [7:0] slot_type, slot_status;
+	wire input_status;
+
+	initial begin
+		KEY[0] <= 1'b0;
+		#10 KEY[0] <=1'b1;
+	end
+	initial begin
+		CLOCK_50 <= 1'b0;
+	end 
+	always begin
+		#(CLOCK_PERIOD / 2);
+		CLOCK_50 = ~CLOCK_50;
+end
+	
+	initial begin
+		pulse = 1'b0;
+		package_status = 1'b0;
+		package_type = 1'b0;
+	
+		#20;
+
+		pulse = 1'b0;
+		package_status = 1'b1;
+		package_type = 1'b0;
+		
+		#10 
+		
+		pulse = 1'b1;
+		package_status = 1'b1;
+		package_type = 1'b1;
+
+		#10;
+		
+		pulse = 1'b1;
+		package_status = 1'b0;
+		package_type = 1'b0;
+		
+		#10;
+		
+		pulse = 1'b1;
+		package_status = 1'b1;
+		package_type = 1'b0;
+		output_status=1'b0;
+		
+		#10;
+		
+		pulse = 1'b1;
+		output_status=1'b0;
+		
+		#10;
+		
+		pulse = 1'b1;
+		
+		#10;
+		
+		pulse = 1'b1;
+		
+		#10;
+		
+		pulse = 1'b1;
+		
+		#10;
+		
+		pulse = 1'b1;
+
+		
+		#10 $stop;
+
+	end
+
+	module conveyor C1(KEY, CLOCK_50, pulse, package_type, package_status, output_status, slot_type, slot_status, input_status);
+
+endmodule

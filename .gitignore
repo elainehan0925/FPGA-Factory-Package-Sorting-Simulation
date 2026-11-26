@@ -1,0 +1,14 @@
+# Generated Quartus/ModelSim files
+**/db/
+**/incremental_db/
+**/output_files/
+**/work/
+**/build/
+*.wlf
+*.cr.mti
+*.qws
+transcript
+# Bundled demos and dependencies are intentionally excluded.
+**/reference/
+**/demo/
+**/VGA/

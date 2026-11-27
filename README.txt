@@ -7,7 +7,9 @@ these folders are not intended to be compiled together into one library.
 
 Distinct .v.bak source versions are preserved under legacy-backups/.
 source-manifest.csv maps uploaded files to their original paths and SHA-256 hashes.
-Milestone 2 was empty at export time.
+Milestone 2 contains the automatic/manual sorting modules, sort controller,
+VGA conveyor, and their testbenches. Integration/top/top.v is the integrated
+top-level source. Original source contents are preserved.
 
 Excluded: bundled VGA examples and demos, supplied VGA adapter/controller/address
 translator, generated PLL, supplied Altera PS2 modules, sample memory images,

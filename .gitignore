@@ -12,3 +12,6 @@ transcript
 **/reference/
 **/demo/
 **/VGA/
+# Include the custom Milestone 2 VGA source.
+!Milestone 2/VGA/
+!Milestone 2/VGA/vga_conveyor.v
